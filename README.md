@@ -1,4 +1,4 @@
-# mecab-ya
+# mecab-sw
 
 Yet another mecab wrapper for nodejs and the main purpose is easy to use.
 
@@ -17,18 +17,18 @@ You need mecab or mecab-ko for Korean language.
 If you don't have mecab yet, you can install with the prepared script.
 
 ```bash
-$ node_modules/mecab-ya/bin/install-mecab
+$ node_modules/mecab-sw/bin/install-mecab
 ```
 
 For the Korean language.
 
 ```bash
-$ node_modules/mecab-ya/bin/install-mecab ko
+$ node_modules/mecab-sw/bin/install-mecab ko
 ```
 
 ## Usage
 
-mecab-ya use the mecab library in the `node_modules/mecab-sw/mecab` directory.
+mecab-sw use the mecab library in the `node_modules/mecab-sw/mecab` directory.
 
 But, you can set a mecab library path like below.
 
