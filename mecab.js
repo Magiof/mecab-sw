@@ -1,9 +1,10 @@
 var cp = require('child_process');
 var sq = require('shell-quote');
 
-var MECAB_LIB_PATH = process.env.MECAB_LIB_PATH
-  ? process.env.MECAB_LIB_PATH
-  : __dirname + '/mecab';
+var MECAB_LIB_PATH = __dirname + '/mecab';
+// var MECAB_LIB_PATH = process.env.MECAB_LIB_PATH
+//   ? process.env.MECAB_LIB_PATH
+//   : __dirname + '/mecab';
 
 var buildCommand = function (text) {
   return (
@@ -28,14 +29,13 @@ var execMecab = function (text, callback) {
 
 var parseFunctions = {
   pos: function (result, elems, index) {
-    result.push([elems[0]].concat(elems[1].split(',')[0]));
-    result.push(index);
+    result.push([elems[0]].concat(elems[1].split(',')[0], index));
+
     return result;
   },
 
   morphs: function (result, elems, index) {
-    result.push(elems[0]);
-    result.push(index);
+    result.push([elems[0], index]);
     return result;
   },
 
@@ -43,8 +43,7 @@ var parseFunctions = {
     var tag = elems[1].split(',')[0];
 
     if (tag === 'NNG' || tag === 'NNP') {
-      result.push(elems[0]);
-      result.push(index);
+      result.push([elems[0], index]);
     }
 
     return result;
@@ -56,27 +55,15 @@ var parse = function (text, method, callback) {
     if (err) {
       return callback(err);
     }
-    var currentIndex = 0; // 현재 인덱스를 추적하는 변수
+    var currentIndex = 0;
 
     result = result.split('\n').reduce(function (parsed, line) {
       var elems = line.split('\t');
 
       if (elems.length > 1) {
-        console.log(
-          'text:',
-          text,
-          '\nline:',
-          line,
-          '\nelems:',
-          elems,
-          '\nelems[0]:',
-          elems[0]
-        );
-        var indexInOriginalText = text.indexOf(elems[0], currentIndex); // 원본 텍스트에서 현재 줄의 시작 인덱스를 찾습니다.
-        currentIndex = indexInOriginalText + elems[0].length; // 다음 탐색을 위해 currentIndex를 업데이트합니다.
-        console.log(indexInOriginalText, elems[0].length);
-        // parseFunctions에 현재 인덱스 정보를 추가로 전달합니다.
-        return parseFunctions[method](parsed, elems, indexInOriginalText);
+        var _index = text.indexOf(elems[0], currentIndex);
+        currentIndex = _index + elems[0].length;
+        return parseFunctions[method](parsed, elems, _index);
       } else {
         return parsed;
       }

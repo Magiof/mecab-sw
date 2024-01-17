@@ -1,37 +1,37 @@
 var nodeunit = require('nodeunit');
 
 var path = require('path'),
-    mecab = require(path.resolve('mecab'));
+  mecab = require(path.resolve('mecab'));
 
-var text = '아버지가방에들어가신다';
+var text = '콩심은데콩나고팥심은데팥난다.';
 
 exports.mecab = {
-    'pos': function (test) {
-        test.expect(2);
+  pos: function (test) {
+    test.expect(2);
 
-        mecab.pos(text, function (err, result) {
-            test.equals(result.length, 6);
-            test.equals(result[0].length, 2);
-            test.done();
-        });
-    },
+    mecab.pos(text, function (err, result) {
+      test.equals(result.length, 12);
+      test.equals(result[0].length, 3);
+      test.done();
+    });
+  },
 
-    'morphs': function (test) {
-        test.expect(2);
+  morphs: function (test) {
+    test.expect(2);
 
-        mecab.morphs(text, function (err, result) {
-            test.equals(result.length, 6);
-            test.equals(result[0], '아버지');
-            test.done();
-        });
-    },
+    mecab.morphs(text, function (err, result) {
+      test.equals(result.length, 12);
+      test.equals(result[0].toString(), ['콩', 0].toString());
+      test.done();
+    });
+  },
 
-    'nouns': function (test) {
-        test.expect(1);
+  nouns: function (test) {
+    test.expect(1);
 
-        mecab.nouns(text, function (err, result) {
-            test.equals(result.length, 2);
-            test.done();
-        });
-    }
+    mecab.nouns(text, function (err, result) {
+      test.equals(result.length, 4);
+      test.done();
+    });
+  },
 };

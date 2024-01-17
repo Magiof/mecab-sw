@@ -49,58 +49,49 @@ So, you can select a mecab library for specific language when you use this and y
 ```
 var mecab = require('mecab-sw');
 
-var text = '아버지가방에들어가신다';
+var text = '콩심은데콩나고팥심은데팥난다';
 
 mecab.pos(text, function (err, result) {
     console.log(result);
     /*
-        [ [ '아버지', 'NNG' ],
-          [ '가', 'JKS' ],
-          [ '방', 'NNG' ],
-          [ '에', 'JKB' ],
-          [ '들어가', 'VV' ],
-          [ '신다', 'EP+EC' ] ]
+        [ [ '콩', 'NNG', 0 ],
+          [ '심', 'VV', 1 ],
+          [ '은데', 'EC', 2 ],
+          [ '콩', 'NNG', 4 ],
+          [ '나', 'VV', 5 ],
+          [ '고', 'EC', 6 ],
+          [ '팥', 'NNG', 8 ],
+          [ '심', 'VV', 9 ],
+          [ '은데', 'EC', 10 ],
+          [ '팥', 'NNG', 12 ],
+          [ '난다', 'VV+EF', 13 ],
+          [ '.', 'SF', 15 ] ]
     */
 });
 
 mecab.morphs(text, function (err, result) {
     console.log(result);
     /*
-        [ '아버지', '가', '방', '에', '들어가', '신다' ]
+        [ [ '콩', 0 ],    [ '심', 1 ],
+          [ '은데', 2 ],  [ '콩', 4 ],
+          [ '나', 5 ],    [ '고', 6 ],
+          [ '팥', 7 ],    [ '심', 8 ],
+          [ '은데', 9 ],  [ '팥', 11 ],
+          [ '난다', 12 ], [ '.', 14 ] ]
     */
 });
 
 mecab.nouns(text, function (err, result) {
     console.log(result);
     /*
-        [ '아버지', '방' ]
+        [ [ '콩', 0 ], [ '콩', 4 ], [ '팥', 7 ], [ '팥', 11 ] ]
     */
 });
 
-mecab.all(text, function (err, result) {
-    console.log(result);
-    /*
-        [
-          [
-            '아버지', 'NNG',
-            '*',      'F',
-            '아버지', '*',
-            '*',      '*',
-            '*'
-          ],
-          [
-            '가', 'JKS', '*',
-            'F',  '가',  '*',
-            '*',  '*',   '*'
-          ],
-          // ... and so on
-        ]
-    */
-});
 ```
 
 Synchronous versions are also available (just add 'Sync' to the function name)  
-ex) `console.log(mecab.posSync("아버지가방에들어가신다"))`
+ex) `console.log(mecab.posSync("콩심은데콩나고팥심은데팥난다"))`
 
 # License
 
