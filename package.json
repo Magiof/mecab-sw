@@ -1,0 +1,32 @@
+{
+  "name": "mecab-sw",
+  "version": "0.0.1",
+  "description": "Yet another mecab wrapper for nodejs",
+  "main": "mecab.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magiof/node-mecab-sw.git"
+  },
+  "keywords": [
+    "mecab",
+    "nlp"
+  ],
+  "author": "Magiof",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/magiof/node-mecab-sw/issues"
+  },
+  "homepage": "https://github.com/magiof/node-mecab-sw#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "nodeunit": "^0.9.1"
+  },
+  "dependencies": {
+    "shell-quote": "^1.5.0"
+  }
+}
