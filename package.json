@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magiof/node-mecab-sw.git"
+    "url": "git+https://github.com/magiof/mecab-sw.git"
   },
   "keywords": [
     "mecab",
@@ -17,9 +17,9 @@
   "author": "Magiof",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/magiof/node-mecab-sw/issues"
+    "url": "https://github.com/magiof/mecab-sw/issues"
   },
-  "homepage": "https://github.com/magiof/node-mecab-sw#readme",
+  "homepage": "https://github.com/magiof/mecab-sw#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
