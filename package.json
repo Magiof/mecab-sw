@@ -1,6 +1,6 @@
 {
   "name": "mecab-sw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yet another mecab wrapper for nodejs",
   "main": "mecab.js",
   "scripts": {
