@@ -1,10 +1,9 @@
 var cp = require('child_process');
 var sq = require('shell-quote');
 
-var MECAB_LIB_PATH = __dirname + '/mecab';
-// var MECAB_LIB_PATH = process.env.MECAB_LIB_PATH
-//   ? process.env.MECAB_LIB_PATH
-//   : __dirname + '/mecab';
+var MECAB_LIB_PATH = process.env.MECAB_LIB_PATH
+  ? process.env.MECAB_LIB_PATH
+  : __dirname + '/mecab';
 
 var buildCommand = function (text) {
   return (
